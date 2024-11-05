@@ -5,8 +5,6 @@ import Calculator from "./pages/Calculator";
  
 
 const App  = () => {
-  
-
   return ( 
       <Routes>
         <Route path="/" element={<HelloWorld />} />
