@@ -1,0 +1,88 @@
+/* src/styles/Calculator.scss */
+$font-family: 'Roboto', sans-serif;
+$background-dark: #5b5253;
+$button-light-gray: #847d7d;
+$button-orange: #fd9e2b;
+$button-dark-gray: #6b6364;
+$text-color: #eeeded;
+$window-button-red: #fc605c;
+$window-button-yellow: #fcbb40;
+$window-button-green: #34c648;
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+  width: 681px;
+  height: 947px;
+  border-radius: 27px;
+  border: 2px solid #000000;
+  background-color: $background-dark;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family;
+  overflow: hidden;
+
+  .calculator__header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 22px;
+    margin: 23px 24px 0;
+
+    .calculator__header-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .red { background-color: $window-button-red; }
+    .yellow { background-color: $window-button-yellow; }
+    .green { background-color: $window-button-green; }
+  }
+
+  .calculator__display {
+    height: 102px;
+    background-color: $background-dark;
+    font-size: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 38px 48px;
+    color: $text-color;
+    font-family: $font-family;
+    font-weight: 100;
+  }
+
+  .calculator__buttons-container {
+    height: 726px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+
+    .buttons-container__button {
+      font-size: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-color;
+      cursor: pointer;
+      font-family: $font-family;
+
+      &.gray { background-color: $button-light-gray; }
+      &.dark-gray { background-color: $button-dark-gray; }
+      &.orange { background-color: $button-orange; }
+    }
+
+    /* Adjust specific button widths */
+    .buttons-container__button.zero {
+        width: 100%;
+      grid-column: span 2; /* "0" button spans two columns */
+    }
+  }
+}
