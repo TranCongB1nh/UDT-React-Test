@@ -1,17 +1,18 @@
-// src/components/Calculator__Buttons.tsx
 import React from 'react'
 import '../styles/Calculator.scss'
 
 type ButtonsProps = {
   onButtonClick: (value: string) => void
+  displayValue: string
 }
 
-const CalculatorButtons = ({ onButtonClick }: ButtonsProps) => {
+const CalculatorButtons = ({ onButtonClick, displayValue }: ButtonsProps) => {
+  const clearButtonLabel = displayValue === '0' ? 'AC' : 'C'
+
   return (
     <div className='calculator__buttons-container'>
-      {/* Row 1 */}
-      <div className='buttons-container__button dark-gray' onClick={() => onButtonClick('AC')}>
-        AC
+      <div className='buttons-container__button dark-gray' onClick={() => onButtonClick(clearButtonLabel)}>
+        {clearButtonLabel}
       </div>
       <div className='buttons-container__button dark-gray' onClick={() => onButtonClick('+/-')}>
         +/-
@@ -23,58 +24,16 @@ const CalculatorButtons = ({ onButtonClick }: ButtonsProps) => {
         ÷
       </div>
 
-      {/* Row 2 */}
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('7')}>
-        7
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('8')}>
-        8
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('9')}>
-        9
-      </div>
-      <div className='buttons-container__button orange' onClick={() => onButtonClick('×')}>
-        ×
-      </div>
-
-      {/* Row 3 */}
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('4')}>
-        4
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('5')}>
-        5
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('6')}>
-        6
-      </div>
-      <div className='buttons-container__button orange' onClick={() => onButtonClick('-')}>
-        -
-      </div>
-
-      {/* Row 4 */}
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('1')}>
-        1
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('2')}>
-        2
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick('3')}>
-        3
-      </div>
-      <div className='buttons-container__button orange' onClick={() => onButtonClick('+')}>
-        +
-      </div>
-
-      {/* Row 5 */}
-      <div className='buttons-container__button gray zero' onClick={() => onButtonClick('0')}>
-        0
-      </div>
-      <div className='buttons-container__button gray' onClick={() => onButtonClick(',')}>
-        ,
-      </div>
-      <div className='buttons-container__button orange' onClick={() => onButtonClick('=')}>
-        =
-      </div>
+      {/* Number and operation buttons */}
+      {[7, 8, 9, '×', 4, 5, 6, '-', 1, 2, 3, '+', 0, ',', '='].map((btn) => (
+        <div
+          key={btn}
+          className={`buttons-container__button ${btn === 0 && 'zero'} ${typeof btn === 'string' && btn !== ',' ? 'orange' : 'gray'}`}
+          onClick={() => onButtonClick(String(btn))}
+        >
+          {btn}
+        </div>
+      ))}
     </div>
   )
 }
